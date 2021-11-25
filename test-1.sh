@@ -8,14 +8,16 @@ REPO_NAME="helm-charts"
 PR_NUMBER=48
 #echo $PR_NUMBER
 #echo $OWNER
-#VAR=$(curl -s 'https://api.github.com/repos/'"${OWNER}"'/'"${REPO_NAME}"'/issues/'"${PR_NUMBER}"'/labels' | grep "name")
+VAR=$(curl -s 'https://api.github.com/repos/'"${OWNER}"'/'"${REPO_NAME}"'/issues/'"${PR_NUMBER}"'/labels' | grep "name")
 #VAR=$(curl -s 'https://api.github.com/repos/Rookout/helm-charts/issues/48/labels' | grep "name")
-VAR=$(curl -s 'https://api.github.com/repos/Rookout/docs/issues/472/labels' | grep "name")
+#VAR=$(curl -s 'https://api.github.com/repos/Rookout/docs/issues/472/labels' | grep "name")  # Check do not merge label
 #echo $(sed -e 's/,/\n/g;s/"//g;s/{//g;s/}//g' $VAR)
 #echo $VAR
 WORDTOREMOVE='"name":'
 WORDTOREMOVE2='"'
 WORDTOREMOVE3=','
+
+echo $VAR
 
 #VAR=$(sed -n "s/"name"//g" "$VAR")
 #sed 's/"//g' $VAR
@@ -32,9 +34,7 @@ WORDTOREMOVE3=','
 #echo sed "s/"name"/"OK"/g" "$VAR"
 
 #VAR=$(sed 's/name/OK/' <<< "$VAR")
-VAR=$(sed 's/"name"://g; s/"//g; s/,//g; s/do not merge/do_not_merge/g' <<< "$VAR")
-
-#VAR= ${VAR//$WORDTOREMOVE/}
+VAR=$(sed 's/name//g; s/"//g; s/,//g; s/://g; s/do not merge/do_not_merge/g' <<< "$VAR")
 
 #VAR=${VAR//$WORDTOREMOVE/}
 #VAR=${VAR//$WORDTOREMOVE2/}
@@ -48,17 +48,22 @@ VAR=$(sed 's/"name"://g; s/"//g; s/,//g; s/do not merge/do_not_merge/g' <<< "$VA
 
 echo $VAR
 
-for VARIABLE in $VAR
-do
-if [ $VARIABLE != "DeployEnforcer/MergeOnceApproved" ] && [ $VARIABLE != "do_not_merge" ]; then
-  echo "yes, Im a regular label"
+#if [ -z "$VAR" ] || [[ -z $(grep "controller" $VAR) ]  && [-z $(grep "datastore" $VAR)] && [-z $(grep "operator" $VAR)]]; then
+#  echo "ERROR: No labels found / didn't find a label named controller/datastore/operator"
+#fi
+
+for VARIABLE in $VAR; do
+# Check if regular label
+if [ $VARIABLE = "DeployEnforcer/MergeOnceApproved" ] || [ $VARIABLE = "do_not_merge" ]; then
+  echo "Im a enforcer label"
 else
-  echo "No, Im a enforcer label"
+  echo "Im a regular label"
 fi
 if [ $VARIABLE = "controller" ] || [ $VARIABLE = "datastore" ] || [ $VARIABLE = "operator" ]; then
-  echo $VARIABLE
+  echo Special label: $VARIABLE
+else
+  echo skip label: $VARIABLE
 fi
-#echo $VARIABLE
 done
 
 #for i in $(echo $VAR | tr "," "\n")
