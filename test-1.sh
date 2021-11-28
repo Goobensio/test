@@ -8,9 +8,11 @@ REPO_NAME="helm-charts"
 PR_NUMBER=48
 #echo $PR_NUMBER
 #echo $OWNER
-VAR=$(curl -s 'https://api.github.com/repos/'"${OWNER}"'/'"${REPO_NAME}"'/issues/'"${PR_NUMBER}"'/labels' | grep "name")
+VAR=$((curl --connect-timeout 5 --max-time 5 --retry 4 --retry-delay 0 --retry-max-time 20 -s 'https://api.github.com/repos/'"${OWNER}"'/'"${REPO_NAME}"'/issues/'"${PR_NUMBER}"'/labels' | grep "name") | sed 's/name//g; s/"//g; s/,//g; s/://g; s/ //g')
+#VAR=$(curl --connect-timeout 5 --max-time 5 --retry 4 --retry-delay 0 --retry-max-time 20 -s 'https://api.github.com/repos/'"${OWNER}"'/'"${REPO_NAME}"'/issues/'"${PR_NUMBER}"'/labels' | grep "name")
 #VAR=$(curl -s 'https://api.github.com/repos/Rookout/helm-charts/issues/48/labels' | grep "name")
 #VAR=$(curl -s 'https://api.github.com/repos/Rookout/docs/issues/472/labels' | grep "name")  # Check do not merge label
+echo "accessing: https://api.github.com/repos/"${OWNER}"/"${REPO_NAME}"/issues/"${PR_NUMBER}"/labels "
 #echo $(sed -e 's/,/\n/g;s/"//g;s/{//g;s/}//g' $VAR)
 #echo $VAR
 WORDTOREMOVE='"name":'
@@ -34,7 +36,9 @@ echo $VAR
 #echo sed "s/"name"/"OK"/g" "$VAR"
 
 #VAR=$(sed 's/name/OK/' <<< "$VAR")
-VAR=$(sed 's/name//g; s/"//g; s/,//g; s/://g; s/do not merge/do_not_merge/g' <<< "$VAR")
+#VAR=$(sed 's/name//g; s/"//g; s/,//g; s/://g; s/do not merge/do_not_merge/g' <<< "$VAR")
+#VAR=$(sed 's/name//g; s/"//g; s/,//g; s/://g; s/ //g' <<< "$VAR")  # Working version, changes color of the rest after it.
+#VAR=$(sed 's/name//g; s/"//g; s/,//g; s/://g; s/ //g' <<< "$VAR")
 
 #VAR=${VAR//$WORDTOREMOVE/}
 #VAR=${VAR//$WORDTOREMOVE2/}
@@ -54,7 +58,7 @@ echo $VAR
 
 for VARIABLE in $VAR; do
 # Check if regular label
-if [ $VARIABLE = "DeployEnforcer/MergeOnceApproved" ] || [ $VARIABLE = "do_not_merge" ]; then
+if [ $VARIABLE = "DeployEnforcer/MergeOnceApproved" ] || [ $VARIABLE = "donotmerge" ]; then
   echo "Im a enforcer label"
 else
   echo "Im a regular label"
