@@ -1,0 +1,36 @@
+name: publish-helm-charts-workflow
+on:  # push , pull_request , page_build , release
+  push:
+    branches: 
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+jobs:
+  publish-helm-charts:
+    runs-on: alpine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate Charts
+        run: |
+          sh install-helm.sh
+          alias helm=/tmp/helm/bin/linux-amd64/helm
+          helm template charts/controller -f charts/controller/values.yaml
+          helm template charts/datastore -f charts/datastore/values.yaml
+      - name: Publish Helm charts to Github Pages
+        run: sh publish.sh
+        env:
+          GITHUB_PAGES_REPO: rookout/helm-chars
+      - name: Verify - Published Charts
+        run: |
+          alias helm=/tmp/helm/bin/linux-amd64/helm
+          if [ "$CIRCLE_BRANCH" = "master" ]; then
+            echo "Waiting for repository to be updated before checking"
+            sleep 15
+            helm repo add rookout https://helm-charts.rookout.com
+            helm repo update
+            helm repo list
+            helm inspect rookout/controller
+            helm inspect rookout/datastore
+          fi
+          echo test, and deploy your project.
