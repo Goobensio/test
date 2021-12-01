@@ -2,6 +2,7 @@
 
 set -e
 
+#trigger-ci
 #VAR=$(curl -s -X GET 'https://api.github.com/repos/Rookout/helm-charts/issues/48/labels')
 OWNER="rookout"
 REPO_NAME="helm-charts"
