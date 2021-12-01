@@ -5,7 +5,7 @@ name: test-CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
-    types: [ labeled ] #[labeled, unlabeled, opened, reopened, edited, ready_for_review]
+    types: [labeled, unlabeled, opened, reopened, edited, ready_for_review]
     branches: [ '*', '!main' ]
     #branches-ignore:
     #  - main #'!main'
@@ -13,7 +13,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   verify-label-exist:
-    if: ${{ github.event.label.name == 'bug'}}
+    #if: ${{ github.event.label.name == 'bug'}}
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -33,6 +33,7 @@ jobs:
       #    valid-labels: 'bug, enhancement'
       #    invalid-labels: 'help wanted, invalid'
       # Runs a single command using the runners shell
+        #if: ${{ github.event.label.name == 'bug'}}
       - name: Run a one-line script
         run: echo Hello, world!
 
