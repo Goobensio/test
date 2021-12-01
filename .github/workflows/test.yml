@@ -5,7 +5,7 @@ name: test-CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
-    #types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
+    types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
     branches-ignore:
       - main #'!main'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
