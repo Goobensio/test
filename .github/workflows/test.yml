@@ -13,6 +13,7 @@ jobs:
   # This workflow contains a single job called "build"
   build-job:
     if: ${{ github.event.label.name == 'bug'}}
+    #echo "::set-output name=action_fruit::strawberry"
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
 
@@ -20,7 +21,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      - with:
+          valid-labels: 'bug, enhancement'
+          invalid-labels: 'help wanted, invalid'
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
