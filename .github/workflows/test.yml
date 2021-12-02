@@ -34,7 +34,7 @@ jobs:
       - name: label check
         if: ${{ github.event.label.name != 'bug'}}
         #uses: actions/checkout@v2
-        uses: actions/github-script@v3
+        uses: actions/github-script@v2
         with:
           script: |
               core.setFailed('valid label does not exist, please add one')
