@@ -22,7 +22,7 @@ jobs:
       - name: check for labels
         run: |
           echo Valid label does not exist
-          exit 1
+          exit 1 "failed to find label"
   build-job:
     #if: ${{ github.event.label.name == 'bug'}}
     #echo "::set-output name=action_fruit::strawberry"
