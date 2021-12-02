@@ -14,23 +14,28 @@ on:
       - main
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  verify-label-exist:
+#   verify-label-exist:
+#     if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
+#     runs-on: ubuntu-18.04
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: check for labels
+#         run: |
+#           echo Valid label does not exist
+#           exit 1 "failed to find label"
+  build-job:
+    #if: ${{ github.event.label.name == 'bug'}}
+    #echo "::set-output name=action_fruit::strawberry"
+    # The type of runner that the job will run on
     if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
     runs-on: ubuntu-18.04
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: check for labels
         run: |
           echo Valid label does not exist
           exit 1 "failed to find label"
-  build-job:
-    #if: ${{ github.event.label.name == 'bug'}}
-    #echo "::set-output name=action_fruit::strawberry"
-    # The type of runner that the job will run on
-    runs-on: ubuntu-18.04
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
       #- with:
       #    valid-labels: 'bug, enhancement'
       #    invalid-labels: 'help wanted, invalid'
