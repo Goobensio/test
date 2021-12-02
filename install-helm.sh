@@ -4,8 +4,8 @@ set -e
 echo '>> Prepare...'
 mkdir -p /tmp/helm/bin
 mkdir -p /tmp/helm/publish
-apk update
-apk add ca-certificates git openssh
+apt update
+apt install ca-certificates git openssh
 
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
 
