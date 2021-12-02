@@ -2,6 +2,7 @@
 set -e
 
 WORKING_DIRECTORY="$PWD"
+echo $env
 echo $PR_NUMBER
 
 [ "$GITHUB_PAGES_REPO" ] || {
