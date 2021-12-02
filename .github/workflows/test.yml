@@ -31,12 +31,16 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: check for labels
-        run: |
-          echo Valid label does not exist
-          sudo core.setFailed("valid label does not exist, please add one")
-          exit 1 "failed to find label"
+      - name: label check
+        uses: actions/checkout@v2
+        with:
+          script: |
+              core.setFailed('valid label does not exist, please add one')
+              exit 1
+#       - name: check for labels
+#         run: |
+#           echo Valid label does not exist
+#           exit 1 "failed to find label"
       #- with:
       #    valid-labels: 'bug, enhancement'
       #    invalid-labels: 'help wanted, invalid'
