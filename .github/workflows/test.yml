@@ -32,11 +32,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: label check
-        if: ${{ github.event.label.name != 'bug'}}
+        #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
+        if: contains( github.event.pull_request.labels.*.name, 'bug')
         #uses: actions/checkout@v2
         uses: actions/github-script@v3
         with:
           script: |
+              core.error
               core.setFailed('valid label does not exist, please add one')
  
         
