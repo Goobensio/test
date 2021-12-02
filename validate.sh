@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bash
 set -e
 
 WORKING_DIRECTORY="$PWD"
 
+echo "added 1"
 echo $env.GITHUB_PAGES_REPO
 echo $GITHUB_PAGES_REPO
 
