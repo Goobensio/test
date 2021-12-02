@@ -4,9 +4,8 @@ set -e
 echo '>> Prepare...'
 mkdir -p /tmp/helm/bin
 mkdir -p /tmp/helm/publish
-apt update
-apt install ca-certificates git openssh-server # Used to be just openssh
-systemctl start ssh
+apt update -y
+apt install ca-certificates git openssh-server -y # Used to be just openssh
 
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
 
