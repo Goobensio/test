@@ -2,6 +2,7 @@
 set -e
 
 WORKING_DIRECTORY="$PWD"
+echo ${{ env.DEPLOYMENT_REPO_NAME }}
 echo $env.PR_NUMBER
 echo $PR_NUMBER
 
