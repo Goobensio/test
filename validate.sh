@@ -3,7 +3,6 @@ set -e
 
 WORKING_DIRECTORY="$PWD"
 
-echo ${{ env.GITHUB_PAGES_REPO }}
 echo $env.GITHUB_PAGES_REPO
 echo $GITHUB_PAGES_REPO
 
