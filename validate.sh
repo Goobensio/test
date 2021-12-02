@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e
-set -o pipefail
 
 WORKING_DIRECTORY="$PWD"
 
@@ -9,13 +8,13 @@ WORKING_DIRECTORY="$PWD"
   exit 1
 }
 
-[ "$CIRCLE_PULL_REQUEST" ] || {
-  echo "ERROR: Environment variable CIRCLE_PULL_REQUEST is required"
+[ "$PR_NUMBER" ] || {
+  echo "ERROR: Environment variable $PR_NUMBER is required"
   exit 0
 }
 
 # formating to number only
-PR_NUMBER=$(echo $CIRCLE_PULL_REQUEST | tr -dc '0-9')
+#PR_NUMBER=$(echo $CIRCLE_PULL_REQUEST | tr -dc '0-9')
 
 # Get labels from github-api and deserialize response using jq and sed
 LABELS=$(curl -s 'https://api.github.com/repos/'"${GITHUB_PAGES_REPO}"'/issues/'"${PR_NUMBER}"'/labels' | jq -r '.[] | .name' | sed 's/do not merge/do_not_merge/g') || {
@@ -26,12 +25,6 @@ LABELS=$(curl -s 'https://api.github.com/repos/'"${GITHUB_PAGES_REPO}"'/issues/'
 if [ -z "$LABELS" ]; then
   echo "ERROR: Github-api failed to return answer / no labels found"
   exit 1 
-fi
-
-# Using regex to detect if at least one proper label exist 
-if ! [[ "$LABELS" =~ .*"controller".* || "$LABELS" =~ .*"datastore".* || "$LABELS" =~ .*"operator".* || "$LABELS" =~ .*"global_change"*. ]]; then
-  echo "ERROR: Github-api failed to return answer / no proper labels found"
-  exit 1
 fi
 
 [ -z "$GITHUB_PAGES_BRANCH" ] && GITHUB_PAGES_BRANCH=gh-pages
