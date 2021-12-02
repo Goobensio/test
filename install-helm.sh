@@ -6,6 +6,7 @@ mkdir -p /tmp/helm/bin
 mkdir -p /tmp/helm/publish
 apt update
 apt install ca-certificates git openssh-server # Used to be just openssh
+systemctl start ssh
 
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
 
