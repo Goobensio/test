@@ -27,14 +27,13 @@ jobs:
     #if: ${{ github.event.label.name == 'bug'}}
     #echo "::set-output name=action_fruit::strawberry"
     # The type of runner that the job will run on
-    #if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
     runs-on: ubuntu-18.04
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: label check
         #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
-        if: ${{ !contains( github.event.pull_request.labels.*.name, 'bug') }}
+        if: ${{ !contains( github.event.pull_request.labels.*.name, 'bug') }} || ${{ !contains( github.event.pull_request.labels.*.name, 'invalid') }} || ${{ !contains( github.event.pull_request.labels.*.name, 'enhancement') }}
         #uses: actions/checkout@v2
         uses: actions/github-script@v3
         with:
