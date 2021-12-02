@@ -66,7 +66,7 @@ jobs:
           echo $PR_NUMBER
           echo $GITHUB_PAGES_REPO
           ls
-          sudo sh validate.sh $GITHUB_PAGES_REPO
+          sudo ./validate.sh $GITHUB_PAGES_REPO
         env:
           GITHUB_PAGES_REPO: rookout/helm-charts
           PR_NUMBER: ${{ github.event.number }}
