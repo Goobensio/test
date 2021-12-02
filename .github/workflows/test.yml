@@ -54,8 +54,6 @@ jobs:
       - name: Validate Charts
         run: |
           sudo sh install-helm.sh
-          ls /tmp/helm/bin/linux-amd64/
-          sudo systemctl status ssh
           alias helm=/tmp/helm/bin/linux-amd64/helm
           echo $GITHUB_PAGES_REPO
           pwd
