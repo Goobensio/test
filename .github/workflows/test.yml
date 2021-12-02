@@ -51,6 +51,19 @@ jobs:
       #    invalid-labels: 'help wanted, invalid'
       # Runs a single command using the runners shell
         #if: ${{ github.event.label.name == 'bug'}}
+      - name: Validate Charts
+        run: |
+          sh install-helm.sh
+          alias helm=/tmp/helm/bin/linux-amd64/helm
+          helm template charts/controller -f charts/controller/values.yaml
+          helm template charts/datastore -f charts/datastore/values.yaml
+      - name: Validate Helm charts and compare with labels
+        run: |
+          apt install --no-cache jq 
+          apt install --no-cache curl
+          sh validate.sh
+        env:
+          GITHUB_PAGES_REPO: rookout/helm-charts 
       - name: Run a one-line script
         run: echo Hello, world!
 
