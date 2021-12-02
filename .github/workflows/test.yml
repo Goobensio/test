@@ -56,7 +56,9 @@ jobs:
           sudo sh install-helm.sh
           ls /tmp/helm/bin/linux-amd64/
           sudo systemctl status ssh
-          alias helm=/tmp/helm/bin/linux-amd64/helm 
+          alias helm=/tmp/helm/bin/linux-amd64/helm
+          echo $GITHUB_PAGES_REPO
+          cd /tmp/helm/bin/linux-amd64/
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
       - name: Validate Helm charts and compare with labels
