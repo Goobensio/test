@@ -35,7 +35,7 @@ jobs:
       - name: check for labels
         run: |
           echo Valid label does not exist
-          core.setFailed('valid label does not exist, please add one')
+          sudo core.setFailed('valid label does not exist, please add one')
           exit 1 "failed to find label"
       #- with:
       #    valid-labels: 'bug, enhancement'
