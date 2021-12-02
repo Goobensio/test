@@ -1,10 +1,12 @@
 #!/bin/sh
 set -e
+set -o
 
 WORKING_DIRECTORY="$PWD"
-echo ${{ env.PR_NUMBER }}
-echo $env.PR_NUMBER
-echo $PR_NUMBER
+
+echo ${{ env.GITHUB_PAGES_REPO }}
+echo $env.GITHUB_PAGES_REPO
+echo $GITHUB_PAGES_REPO
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
