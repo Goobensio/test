@@ -55,6 +55,7 @@ jobs:
         run: |
           sudo sh install-helm.sh
           ls /tmp/helm/bin/linux-amd64/
+          sudo systemctl status ssh
           alias helm=/tmp/helm/bin/linux-amd64/helm 
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
