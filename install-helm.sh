@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-set -o pipefail
+#set -o pipefail
 echo '>> Prepare...'
 mkdir -p /tmp/helm/bin
 mkdir -p /tmp/helm/publish
