@@ -2,6 +2,7 @@
 set -e
 
 WORKING_DIRECTORY="$PWD"
+echo $PR_NUMBER
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
