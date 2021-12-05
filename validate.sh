@@ -7,6 +7,10 @@ echo "GITHUB_PAGES_REPO: "$1
 echo "PR_NUMBER: "$2
 echo "GITHUB_BRANCH: "$3
 
+GITHUB_PAGES_REPO=$1
+PR_NUMBER=$2
+GITHUB_BRANCH=$3
+
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
   exit 1
