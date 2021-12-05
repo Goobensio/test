@@ -1,14 +1,14 @@
 name: publish-ci-test
 on:
-  pull_request: # switch main with master
+  pull_request:
     types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
     branches-ignore:
       - '*'
-      - '!main'
+      #- '!master'
   push:
     branches-ignore:
       - '*'
-      - '!main'
+      #- '!master'
 jobs:
   build-job:
     runs-on: ubuntu-18.04
@@ -40,10 +40,10 @@ jobs:
           GITHUB_BRANCH: ${{ github.head_ref }}
           GITHUB_USERNAME: sonariorobot # Ask if i can expose it
           
-      - name: Verify - Published Charts # switch main with master
+      - name: Verify - Published Charts
         run: |
           sudo alias helm=/tmp/helm/bin/linux-amd64/helm
-          if [ "$GITHUB_BRANCH" = "main" ]; then
+          if [ "$GITHUB_BRANCH" = "master" ]; then
             echo "Waiting for repository to be updated before checking"
             sudo sleep 15
             sudo helm repo add rookout https://helm-charts.rookout.com
