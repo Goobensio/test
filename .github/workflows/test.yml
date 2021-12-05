@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: label check
         #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
-        if: ${{ !contains( github.event.pull_request.labels.*.name, 'bug') && !contains( github.event.pull_request.labels.*.name, 'invalid') && !contains( github.event.pull_request.labels.*.name, 'enhancement') }}
+        if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
         #uses: actions/checkout@v2
         uses: actions/github-script@v3
         with:
@@ -68,7 +68,7 @@ jobs:
           sudo apt install jq curl -y
           echo $PR_NUMBER
           echo $GITHUB_PAGES_REPO
-          sudo sh validate.sh
+          sudo sh validate.sh $GITHUB_PAGES_REPO $PR_NUMBER
         env:
           GITHUB_PAGES_REPO2: rookout/helm-charts
           PR_NUMBER2: ${{ github.event.number }}
