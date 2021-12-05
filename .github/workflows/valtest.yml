@@ -31,8 +31,6 @@ jobs:
     #echo "::set-output name=action_fruit::strawberry"
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
-    permissions:
-          issues: write
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
