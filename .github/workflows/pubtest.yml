@@ -2,11 +2,11 @@ name: publish-ci-test
 on:
   pull_request: # switch main with master
     types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
-    branches:
-      - main
+    branches-ignore:
+      - '!main'
   push:
-    branches:
-      - main
+    branches-ignore:
+      - '!main'
 jobs:
   build-job:
     runs-on: ubuntu-18.04
