@@ -9,7 +9,7 @@ echo "GITHUB_BRANCH: "$3
 
 GITHUB_PAGES_REPO=$1
 PR_NUMBER=$2
-GITHUB_BRANCH=$GITHUB_BRANCH
+GITHUB_BRANCH=$3
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -43,7 +43,7 @@ fi
 }
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
 [ "$GITHUB_BRANCH" ] || {
-  echo "ERROR: Environment variable CIRCLE_BRANCH is required"
+  echo "ERROR: Environment variable GITHUB_BRANCH is required"
   exit 1
 }
 
