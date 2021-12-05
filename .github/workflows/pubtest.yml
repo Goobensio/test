@@ -16,6 +16,7 @@ jobs:
         if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
         uses: actions/github-script@v3
         with:
+          message: "valid label does not exist, please add one"
           script: |
               core.error
               core.setFailed('valid label does not exist, please add one')
@@ -25,15 +26,17 @@ jobs:
           alias helm=/tmp/helm/bin/linux-amd64/helm
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
-      - name: Validate Charts Version - Helm charts and compare with labels
+      - name: Validate Charts Version - Helm charts and compare with labels # Change to publish.sh and inside to master
         run: |
           sudo apt install jq curl -y
           echo $GITHUB_PAGES_REPO
           echo $GITHUB_BRANCH
-          sudo sh validate.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH
+          echo $GITHUB_USERNAME
+          sudo sh validate.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH $GITHUB_USERNAME
         env:
           GITHUB_PAGES_REPO: Goobensio/test #rookout/helm-charts
           GITHUB_BRANCH: ${{ github.head_ref }}
+          GITHUB_USERNAME: sonariorobot # Ask if i can expose it
           
       - name: Verify - Published Charts # switch main with master
         run: |
