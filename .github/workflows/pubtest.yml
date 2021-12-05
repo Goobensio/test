@@ -3,9 +3,11 @@ on:
   pull_request: # switch main with master
     types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
     branches-ignore:
+      - '*'
       - '!main'
   push:
     branches-ignore:
+      - '*'
       - '!main'
 jobs:
   build-job:
