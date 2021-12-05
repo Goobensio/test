@@ -7,11 +7,11 @@ on:
   pull_request:
     types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
     branches-ignore:
-      - main #'!main'
+      - master #'!main'
       - '!*'
   push:
     branches-ignore:
-      - main
+      - master
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 #env:
 #  GITHUB_PAGES_REPO: rookout/helm-charts
