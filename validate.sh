@@ -56,7 +56,8 @@ alias helm=/tmp/helm/bin/linux-amd64/helm
 
 echo '>> Building charts and comparing with labels...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
-  chart_name="`basename "$chart"`"
+  sudo chart_name="`basename "$chart"`"
+  echo $chart_name
   for label in $LABELS; do
   if [ $label == $chart_name ]; then
     echo ">>> fetching chart $chart_name version"
