@@ -13,10 +13,8 @@ on:
     branches-ignore:
       - main
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-env:
-  GITHUB_PAGES_REPO: rookout/helm-charts
-  PR_NUMBER: ${{ github.event.number }}
-  GITHUB_BRANCH: ${{ github.head_ref }}
+#env:
+#  GITHUB_PAGES_REPO: rookout/helm-charts
 jobs:
 #   verify-label-exist:
 #     if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
@@ -72,9 +70,6 @@ jobs:
         run: |
           sudo sh install-helm.sh
           alias helm=/tmp/helm/bin/linux-amd64/helm
-          echo $GITHUB_PAGES_REPO
-          pwd
-          ls
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
       - name: Validate Helm charts and compare with labels
@@ -85,8 +80,9 @@ jobs:
           echo $GITHUB_BRANCH
           sudo sh validate.sh $GITHUB_PAGES_REPO $PR_NUMBER $GITHUB_BRANCH
         env:
-          GITHUB_PAGES_REPO2: rookout/helm-charts
-          PR_NUMBER2: ${{ github.event.number }}
+          GITHUB_PAGES_REPO: rookout/helm-charts
+          PR_NUMBER: ${{ github.event.number }}
+          GITHUB_BRANCH: ${{ github.head_ref }}
       - name: Run a one-line script
         run: echo Hello, world!
 
