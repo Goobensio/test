@@ -16,7 +16,7 @@ on:
 env:
   GITHUB_PAGES_REPO: rookout/helm-charts
   PR_NUMBER: ${{ github.event.number }}
-  #GITHUB_BRANCH: ${{ github_ref }}
+  GITHUB_BRANCH: ${{ GITHUB_HEAD_REF }}
 jobs:
 #   verify-label-exist:
 #     if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
@@ -45,18 +45,18 @@ jobs:
               core.error
               core.setFailed('valid label does not exist, please add one')
               
-      - name: Extract branch name on push
-        if: github.event_name != 'pull_request'
-        shell: bash
-        run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+#       - name: Extract branch name on push
+#         if: github.event_name != 'pull_request'
+#         shell: bash
+#         run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_REF#refs/heads/})"
+#         id: extract_branch
 
-      - name: Extract branch name on pull request
-        if: github.event_name == 'pull_request'
-        run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_HEAD_REF})"
+#       - name: Extract branch name on pull request
+#         if: github.event_name == 'pull_request'
+#         run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_HEAD_REF})"
 
-      - name: Print branch name
-        run: echo 'The branch name is' $GITHUB_BRANCH
+#       - name: Print branch name
+#         run: echo 'The branch name is' $GITHUB_BRANCH
  
         
 #       - name: check for labels
