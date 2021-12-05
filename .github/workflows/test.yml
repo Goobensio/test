@@ -16,7 +16,7 @@ on:
 env:
   GITHUB_PAGES_REPO: rookout/helm-charts
   PR_NUMBER: ${{ github.event.number }}
-  GITHUB_BRANCH: ${{ GITHUB.REF.NAME }}
+  GITHUB_BRANCH: ${{ GITHUB.REF_NAME }}
 jobs:
 #   verify-label-exist:
 #     if: ${{ github.event.label.name != 'bug'}} # Lets say for example that bug is valid
