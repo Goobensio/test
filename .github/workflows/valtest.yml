@@ -44,6 +44,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Please add a valid label to the pull request based on what you changed.
+            exit 1 "failed to find valid label"
         #uses: actions/github-script@v3
         #with:
         #  script: |
