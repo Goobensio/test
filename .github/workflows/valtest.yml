@@ -30,18 +30,25 @@ jobs:
     #echo "::set-output name=action_fruit::strawberry"
     # The type of runner that the job will run on
     runs-on: ubuntu-18.04
+    permissions:
+          issues: write
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: label check
+      - name: Check for valid label
         #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
         if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
         #uses: actions/checkout@v2
-        uses: actions/github-script@v3
+        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
         with:
-          script: |
-              core.error
-              core.setFailed('valid label does not exist, please add one')
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Please add a valid label to the pull request based on what you changed.
+        #uses: actions/github-script@v3
+        #with:
+        #  script: |
+        #      core.error
+        #      core.setFailed('valid label does not exist, please add one')
               
 #       - name: Extract branch name on push
 #         if: github.event_name != 'pull_request'
@@ -83,11 +90,3 @@ jobs:
           GITHUB_PAGES_REPO: Goobensio/test #rookout/helm-charts
           PR_NUMBER: ${{ github.event.number }}
           GITHUB_BRANCH: ${{ github.head_ref }}
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
