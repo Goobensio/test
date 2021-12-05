@@ -1,0 +1,52 @@
+name: publish-ci-test
+on:
+  pull_request: # switch main with master
+    types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  build-job:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: label check
+        if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+              core.error
+              core.setFailed('valid label does not exist, please add one')
+      - name: Validate Charts
+        run: |
+          sudo sh install-helm.sh
+          alias helm=/tmp/helm/bin/linux-amd64/helm
+          sudo helm template charts/controller -f charts/controller/values.yaml
+          sudo helm template charts/datastore -f charts/datastore/values.yaml
+      - name: Validate Charts Version - Helm charts and compare with labels
+        run: |
+          sudo apt install jq curl -y
+          echo $GITHUB_PAGES_REPO
+          echo $GITHUB_BRANCH
+          sudo sh validate.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH
+        env:
+          GITHUB_PAGES_REPO: Goobensio/test #rookout/helm-charts
+          GITHUB_BRANCH: ${{ github.head_ref }}
+          
+      - name: Verify - Published Charts # switch main with master
+        run: |
+          sudo alias helm=/tmp/helm/bin/linux-amd64/helm
+          if [ "$GITHUB_BRANCH" = "main" ]; then
+            echo "Waiting for repository to be updated before checking"
+            sudo sleep 15
+            sudo helm repo add rookout https://helm-charts.rookout.com
+            sudo helm repo update
+            sudo helm repo list
+            sudo helm inspect rookout/controller
+            sudo helm inspect rookout/datastore
+          fi
+        env:
+          GITHUB_BRANCH: ${{ github.head_ref }}
+          
