@@ -1,8 +1,9 @@
 #!/bin/sh
-set -e
-set -o pipefail
 
 WORKING_DIRECTORY="$PWD"
+GITHUB_PAGES_REPO=$1
+GITHUB_BRANCH=$2
+GITHUB_USERNAME=$3
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -16,8 +17,8 @@ WORKING_DIRECTORY="$PWD"
   exit 1
 }
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
-[ "$CIRCLE_BRANCH" ] || {
-  echo "ERROR: Environment variable CIRCLE_BRANCH is required"
+[ "$GITHUB_BRANCH" ] || {
+  echo "ERROR: Environment variable GITHUB_BRANCH is required"
   exit 1
 }
 
@@ -25,7 +26,7 @@ echo "GITHUB_PAGES_REPO=$GITHUB_PAGES_REPO"
 echo "GITHUB_PAGES_BRANCH=$GITHUB_PAGES_BRANCH"
 echo "HELM_CHARTS_SOURCE=$HELM_CHARTS_SOURCE"
 echo "HELM_VERSION=$HELM_VERSION"
-echo "CIRCLE_BRANCH=$CIRCLE_BRANCH"
+echo "GITHUB_BRANCH=$GITHUB_BRANCH"
 
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
@@ -49,14 +50,14 @@ done
 
 echo '>>> helm repo index'
 helm repo index .
-if [ "$CIRCLE_BRANCH" != "master" ]; then
+if [ "$GITHUB_BRANCH" != "main" ]; then
   echo "Current branch is not master and do not publish"
   exit 0
 fi
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-git config user.email "$CIRCLE_USERNAME@users.noreply.github.com"
-git config user.name CircleCI
+git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USERNAME@users.noreply.github.com"
+git config user.name Github-Actions-CI #CircleCI
 git add .
 git status
-git commit -m "Published by CircleCI $CIRCLE_BUILD_URL"
+git commit -m "Published by github actions https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" #$CIRCLE_BUILD_URL"
 git push origin "$GITHUB_PAGES_BRANCH"
