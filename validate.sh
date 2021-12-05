@@ -60,7 +60,7 @@ find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; d
   for label in $LABELS; do
   echo "$chart_name"
   echo "$label"
-  if [ $label == $chart_name ]; then
+  if [ $label = $chart_name ]; then
     echo ">>> fetching chart $chart_name version"
     chart_version=$(cat $chart/Chart.yaml | grep -oE "version:\s[0-9]+\.[0-9]+\.[0-9]+" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
     echo ">>> checking if version is already published"
