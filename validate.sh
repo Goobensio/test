@@ -6,6 +6,8 @@ WORKING_DIRECTORY="$PWD"
 echo "added 2"
 echo $env.GITHUB_PAGES_REPO
 echo $GITHUB_PAGES_REPO
+GITHUB_PAGES_REPO=$1
+PR_NUMBER=$2
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
