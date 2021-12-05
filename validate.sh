@@ -3,11 +3,9 @@
 
 WORKING_DIRECTORY="$PWD"
 
-echo "added 2"
-echo $env.GITHUB_PAGES_REPO
-echo $GITHUB_PAGES_REPO
-GITHUB_PAGES_REPO=$1
-PR_NUMBER=$2
+echo "GITHUB_PAGES_REPO: "$1
+echo "PR_NUMBER: "$2
+echo "GITHUB_BRANCH: "$3
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -15,7 +13,7 @@ PR_NUMBER=$2
 }
 
 [ "$PR_NUMBER" ] || {
-  echo "ERROR: Environment variable $PR_NUMBER is required"
+  echo "ERROR: Environment variable PR_NUMBER is required"
   exit 0
 }
 
@@ -40,7 +38,7 @@ fi
   exit 1
 }
 [ -z "$HELM_VERSION" ] && HELM_VERSION=2.8.1
-[ "$CIRCLE_BRANCH" ] || {
+[ "$GITHUB_BRANCH" ] || {
   echo "ERROR: Environment variable CIRCLE_BRANCH is required"
   exit 1
 }
@@ -51,7 +49,7 @@ echo "GITHUB_PAGES_REPO=$GITHUB_PAGES_REPO"
 echo "GITHUB_PAGES_BRANCH=$GITHUB_PAGES_BRANCH"
 echo "HELM_CHARTS_SOURCE=$HELM_CHARTS_SOURCE"
 echo "HELM_VERSION=$HELM_VERSION"
-echo "CIRCLE_BRANCH=$CIRCLE_BRANCH"
+echo "GITHUB_BRANCH=$GITHUB_BRANCH"
 
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
