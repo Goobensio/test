@@ -1,12 +1,6 @@
 #!/bin/bash
-#set -e
 
 WORKING_DIRECTORY="$PWD"
-
-echo "GITHUB_PAGES_REPO: "$1
-echo "PR_NUMBER: "$2
-echo "GITHUB_BRANCH: "$3
-
 GITHUB_PAGES_REPO=$1
 PR_NUMBER=$2
 GITHUB_BRANCH=$3
@@ -20,9 +14,6 @@ GITHUB_BRANCH=$3
   echo "ERROR: Environment variable PR_NUMBER is required"
   exit 0
 }
-
-# formating to number only
-#PR_NUMBER=$(echo $CIRCLE_PULL_REQUEST | tr -dc '0-9')
 
 # Get labels from github-api and deserialize response using jq and sed
 LABELS=$(curl -s 'https://api.github.com/repos/'"${GITHUB_PAGES_REPO}"'/issues/'"${PR_NUMBER}"'/labels' | jq -r '.[] | .name' | sed 's/do not merge/do_not_merge/g') || {
