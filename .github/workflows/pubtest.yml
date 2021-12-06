@@ -8,7 +8,7 @@ on:
   push:
     branches-ignore:
       - '*'
-      #- '!master'
+      - '!master'
 jobs:
   build-job:
     runs-on: ubuntu-18.04
