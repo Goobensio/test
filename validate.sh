@@ -67,6 +67,7 @@ find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; d
     echo "$chart_version"
     echo "$chart_name-$chart_version.tgz"
     echo ">>> checking if version is already published"
+    echo "ls:"
     ls
     if [ -f "chart_name/$chart_name-$chart_version.tgz" ]; then
     #if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
