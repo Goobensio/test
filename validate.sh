@@ -52,7 +52,7 @@ cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 git clone -b "$GITHUB_PAGES_BRANCH" "git@github.com:$GITHUB_PAGES_REPO.git" #GITHUB_PAGES_REPO
-alias helm=/tmp/helm/bin/linux-amd64/helm
+sudo alias helm="/tmp/helm/bin/linux-amd64/helm"
 #cd operator/
 ls "$HELM_CHARTS_SOURCE"
 
@@ -60,8 +60,8 @@ echo '>> Building charts and comparing with labels...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
   chart_name="`basename "$chart"`"
   for label in $LABELS; do
-  echo "$chart_name"
-  echo "$label"
+  #echo "$chart_name"
+  #echo "$label"
   if [ $label = $chart_name ]; then
     echo ">>> fetching chart $chart_name version"
     chart_version=$(cat $chart/Chart.yaml | grep -oE "version:\s[0-9]+\.[0-9]+\.[0-9]+" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
