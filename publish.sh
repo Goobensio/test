@@ -36,7 +36,7 @@ alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
 
 echo '>> Building charts...'
-find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
+sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
   chart_name="`basename "$chart"`"
   echo ">>> fetching chart $chart_name version"
   chart_version=$(cat $chart/Chart.yaml | grep -oE "version:\s[0-9]+\.[0-9]+\.[0-9]+" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
