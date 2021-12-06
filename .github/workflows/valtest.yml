@@ -88,6 +88,6 @@ jobs:
           echo $GITHUB_BRANCH
           sudo sh validate.sh $GITHUB_PAGES_REPO $PR_NUMBER $GITHUB_BRANCH
         env:
-          GITHUB_PAGES_REPO: Goobensio/test #rookout/helm-charts
+          GITHUB_PAGES_REPO: rookout/helm-charts #Goobensio/test #rookout/helm-charts
           PR_NUMBER: ${{ github.event.number }}
           GITHUB_BRANCH: ${{ github.head_ref }}
