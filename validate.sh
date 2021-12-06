@@ -71,7 +71,7 @@ sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read cha
     echo "ls:"
     ls
     if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
-      echo ">>> Error: VERSION $chart_version ALREADY EXISTS! Update chart version."
+      echo ">>> Error: CHART $chart_name VERSION $chart_version ALREADY EXISTS! Update chart version."
       exit 1
     else
       echo ">>> chart version is valid, continuing..."
