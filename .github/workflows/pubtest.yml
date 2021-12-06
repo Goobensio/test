@@ -36,9 +36,9 @@ jobs:
           echo $GITHUB_USERNAME
           sudo sh validate.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH $GITHUB_USERNAME
         env:
-          GITHUB_PAGES_REPO: Goobensio/test #rookout/helm-charts
+          GITHUB_PAGES_REPO: rookout/helm-charts #Goobensio/test #rookout/helm-charts
           GITHUB_BRANCH: ${{ github.head_ref }}
-          GITHUB_USERNAME: sonariorobot # Ask if i can expose it
+          GITHUB_USERNAME: sonariorobot
           
       - name: Verify - Published Charts
         run: |
