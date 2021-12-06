@@ -4,6 +4,7 @@ WORKING_DIRECTORY="$PWD"
 GITHUB_PAGES_REPO=$1
 PR_NUMBER=$2
 GITHUB_BRANCH=$3
+GITHUB_PAGES_TEST=$4
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -16,7 +17,7 @@ GITHUB_BRANCH=$3
 }
 
 # Get labels from github-api and deserialize response using jq and sed
-LABELS=$(curl -s 'https://api.github.com/repos/'"${GITHUB_PAGES_REPO}"'/issues/'"${PR_NUMBER}"'/labels' | jq -r '.[] | .name' | sed 's/do not merge/do_not_merge/g') || {
+LABELS=$(curl -s 'https://api.github.com/repos/'"${GITHUB_PAGES_TEST}"'/issues/'"${PR_NUMBER}"'/labels' | jq -r '.[] | .name' | sed 's/do not merge/do_not_merge/g') || {
   echo "ERROR: curl failed to get response from github-api  /  failed to serialize data"
   exit 1
 }
@@ -50,7 +51,7 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
-git clone -b "$GITHUB_PAGES_BRANCH" "git@github.com:rookout/helm-charts.git" #GITHUB_PAGES_REPO
+git clone -b "$GITHUB_PAGES_BRANCH" "git@github.com:$GITHUB_PAGES_REPO.git" #GITHUB_PAGES_REPO
 alias helm=/tmp/helm/bin/linux-amd64/helm
 #cd operator/
 ls
