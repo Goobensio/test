@@ -48,15 +48,15 @@ find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; d
 done
 
 echo '>>> helm repo index'
-helm repo index .
+# helm repo index .
 if [ "$GITHUB_BRANCH" != "master" ]; then
   echo "Current branch is not master and do not publish"
   exit 0
 fi
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USERNAME@users.noreply.github.com"
-git config user.name Github-Actions-CI #CircleCI
-git add .
-git status
-git commit -m "Published by github actions https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" #$CIRCLE_BUILD_URL"
-git push origin "$GITHUB_PAGES_BRANCH"
+# git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USERNAME@users.noreply.github.com"
+# git config user.name Github-Actions-CI #CircleCI
+# git add .
+# git status
+# git commit -m "Published by github actions https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" #$CIRCLE_BUILD_URL"
+# git push origin "$GITHUB_PAGES_BRANCH"
