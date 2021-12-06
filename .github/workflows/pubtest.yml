@@ -51,8 +51,8 @@ jobs:
             helm repo add rookout https://helm-charts.rookout.com
             helm repo update
             helm repo list
-            helm inspect rookout/controller
-            helm inspect rookout/datastore
+            helm inspect chart rookout/controller
+            helm inspect chart rookout/datastore
           fi
           echo $GITHUB_BRANCH
         env:
