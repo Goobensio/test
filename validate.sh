@@ -55,6 +55,7 @@ mkdir -p "$HOME/.ssh"
 #git clone -b "gh-pages" "git@github.com:rookout/helm-charts.git" #GITHUB_PAGES_REPO
 git clone -b "gh-pages" "https://github.com/Rookout/helm-charts.git" #GITHUB_PAGES_REPO
 alias helm="/tmp/helm/bin/linux-amd64/helm"
+cd /helm-charts/
 #cd operator/
 #ls "$HELM_CHARTS_SOURCE"
 
