@@ -50,26 +50,19 @@ echo "GITHUB_BRANCH=$GITHUB_BRANCH"
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
-#ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git" #GITHUB_PAGES_REPO
-#git clone -b "gh-pages" "git@github.com:rookout/helm-charts.git" #GITHUB_PAGES_REPO
-#git clone -b "gh-pages" "https://github.com/Rookout/helm-charts.git" #GITHUB_PAGES_REPO
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
+echo "$LABELS"
 
 echo '>> Building charts and comparing with labels...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
   chart_name="`basename "$chart"`"
   for label in $LABELS; do
-  #echo "$chart_name"
-  #echo "$label"
   if [ $label = $chart_name ]; then
     echo ">>> fetching chart $chart_name version"
     chart_version=$(cat $chart/Chart.yaml | grep -oE "version:\s[0-9]+\.[0-9]+\.[0-9]+" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
-    echo "$chart_version"
     echo ">>> checking if version is already published"
-    echo "ls:"
-    ls
     if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
       echo ">>> Error: CHART $chart_name VERSION $chart_version ALREADY EXISTS! Update chart version."
       exit 1
