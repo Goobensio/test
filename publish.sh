@@ -54,6 +54,7 @@ if [ "$GITHUB_BRANCH" != "master" ]; then
   exit 0
 fi
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
+echo $GITHUB_USERNAME
 # git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USERNAME@users.noreply.github.com"
 # git config user.name Github-Actions-CI #CircleCI
 # git add .
