@@ -45,7 +45,7 @@ jobs:
         run: |
           echo $GITHUB_BRANCH
           alias helm="/tmp/helm/bin/linux-amd64/helm"
-          if [ "$GITHUB_BRANCH" = "master" ]; then
+          if [ "$GITHUB_BRANCH" = "refs/heads/master" ]; then
             echo "Waiting for repository to be updated before checking"
             sudo sleep 15
             sudo helm repo add rookout https://helm-charts.rookout.com
