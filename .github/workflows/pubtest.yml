@@ -48,12 +48,13 @@ jobs:
           if [ "$GITHUB_BRANCH" = "refs/heads/master" ]; then
             echo "Waiting for repository to be updated before checking"
             sudo sleep 15
-            sudo helm repo add rookout https://helm-charts.rookout.com
-            sudo helm repo update
-            sudo helm repo list
-            sudo helm inspect rookout/controller
-            sudo helm inspect rookout/datastore
+            helm repo add rookout https://helm-charts.rookout.com
+            helm repo update
+            helm repo list
+            helm inspect rookout/controller
+            helm inspect rookout/datastore
           fi
+          echo $GITHUB_BRANCH
         env:
           GITHUB_BRANCH: ${{ github.ref }}
           
