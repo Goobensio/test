@@ -28,7 +28,7 @@ jobs:
           alias helm=/tmp/helm/bin/linux-amd64/helm
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
-      - name: Validate Charts Version - Helm charts and compare with labels # Change to publish.sh and inside to master
+      - name: Publish Charts # Change to publish.sh and inside to master
         run: |
           sudo apt install jq curl -y
           echo $GITHUB_PAGES_REPO
