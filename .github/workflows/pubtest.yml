@@ -25,7 +25,7 @@ jobs:
       - name: Validate Charts
         run: |
           sudo sh install-helm.sh
-          alias helm=/tmp/helm/bin/linux-amd64/helm
+          alias helm="/tmp/helm/bin/linux-amd64/helm"
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
       - name: Publish Charts # Change to publish.sh and inside to master
@@ -44,7 +44,7 @@ jobs:
       - name: Verify - Published Charts
         run: |
           echo $GITHUB_BRANCH
-          sudo alias helm=/tmp/helm/bin/linux-amd64/helm
+          alias helm="/tmp/helm/bin/linux-amd64/helm"
           if [ "$GITHUB_BRANCH" = "master" ]; then
             echo "Waiting for repository to be updated before checking"
             sudo sleep 15
