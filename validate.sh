@@ -65,7 +65,8 @@ find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; d
     chart_version=$(cat $chart/Chart.yaml | grep -oE "version:\s[0-9]+\.[0-9]+\.[0-9]+" | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
     echo "$chart_version"
     echo ">>> checking if version is already published"
-    if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
+    #if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
+    if [ "$chart_name" = "$chart_name-$chart_version.tgz" ]; then
       echo ">>> Error: VERSION $chart_version ALREADY EXISTS! Update chart version."
       exit 1
     else
