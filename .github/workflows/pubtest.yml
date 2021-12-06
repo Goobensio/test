@@ -37,9 +37,9 @@ jobs:
           sudo sh publish.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH $GITHUB_USERNAME
         env:
           GITHUB_PAGES_REPO: rookout/helm-charts #Goobensio/test #rookout/helm-charts
-          GITHUB_PAGES_TEST: Goobensio/test
-          GITHUB_BRANCH: ${{ github.head_ref }}
+          GITHUB_BRANCH: ${{ github.ref }}
           GITHUB_USERNAME: sonariorobot
+          GITHUB_PAGES_TEST: Goobensio/test
           
       - name: Verify - Published Charts
         run: |
@@ -55,5 +55,5 @@ jobs:
             sudo helm inspect rookout/datastore
           fi
         env:
-          GITHUB_BRANCH: ${{ github.head_ref }}
+          GITHUB_BRANCH: ${{ github.ref }}
           
