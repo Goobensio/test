@@ -49,7 +49,7 @@ done
 
 echo '>>> helm repo index'
 # helm repo index .
-if [ "$GITHUB_BRANCH" != "master" ]; then
+if [ "$GITHUB_BRANCH" != "refs/heads/master" ]; then
   echo "Current branch is not master and do not publish"
   exit 0
 fi
