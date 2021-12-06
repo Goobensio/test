@@ -52,9 +52,8 @@ mkdir -p "$HOME/.ssh"
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 git clone -b "$GITHUB_PAGES_BRANCH" "git@github.com:$GITHUB_PAGES_REPO.git" .
 alias helm=/tmp/helm/bin/linux-amd64/helm
-cd operator/
+#cd operator/
 ls
-
 
 echo '>> Building charts and comparing with labels...'
 find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
@@ -68,7 +67,8 @@ find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; d
     echo "$chart_version"
     echo "$chart_name-$chart_version.tgz"
     echo ">>> checking if version is already published"
-    if [ -f "$chart_name-$chart_version.tgz" ]; then
+    ls
+    if [ -f "chart_name/$chart_name-$chart_version.tgz" ]; then
     #if [ -f "$chart_name/$chart_name-$chart_version.tgz" ]; then
       echo ">>> Error: VERSION $chart_version ALREADY EXISTS! Update chart version."
       exit 1
