@@ -37,42 +37,20 @@ jobs:
       - name: Check for valid label
         #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
         if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
-
-        #uses: actions/checkout@v2
-#         uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
-#         with:
-#           issue-number: ${{ github.event.issue.number }}
-#           body: |
-#             Please add a valid label to the pull request based on what you changed.
-#             exit 1 "failed to find valid label"
         uses: actions/github-script@v3
         with:
          script: |
              core.error
              core.setFailed('valid label does not exist, please add one')
-      - name: Comment on PR
-        uses: thollander/actions-comment-pull-request@v1        
+      - name: comment on failure
+        uses: quipper/comment-failure-action@v0.1.1
         with:
-          message: 'basic error???'
-              
-#       - name: Extract branch name on push
-#         if: github.event_name != 'pull_request'
-#         shell: bash
-#         run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_REF#refs/heads/})"
-#         id: extract_branch
-
-#       - name: Extract branch name on pull request
-#         if: github.event_name == 'pull_request'
-#         run: sudo echo "::set-env name=GITHUB_BRANCH::$(echo ${GITHUB_HEAD_REF})"
-
-#       - name: Print branch name
-#         run: echo 'The branch name is' $GITHUB_BRANCH
- 
-        
-#       - name: check for labels
-#         run: |
-#           echo Valid label does not exist
-#           exit 1 "failed to find label"
+          message: "???? failure"
+          #api-token: ${{ secrets.YOUR_GITHUB_TOKEN }} # Replace with your secret's name
+#       - name: Comment on PR
+#         uses: thollander/actions-comment-pull-request@v1        
+#         with:
+#           message: 'basic error???'
       #- with:
       #    valid-labels: 'bug, enhancement'
       #    invalid-labels: 'help wanted, invalid'
