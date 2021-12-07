@@ -7,32 +7,27 @@ GITHUB_USERNAME=$3
 GITHUB_ACTIONS_REPO=$4
 GITHUB_ACTIONS_RUN_ID=$5
 
-[ "$GITHUB_PAGES_REPO" ] || {
+[ "$1" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
   exit 1
 }
 
-# if [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ]; then
-#   echo "ERROR: Environment variable GITHUB_USERNAME is required"
-#   exit 1
-# fi
-
-[ "$GITHUB_BRANCH" ] || {
+[ "$$2" ] || {
   echo "ERROR: Environment variable GITHUB_BRANCH is required"
   exit 1
 }
 
-[ "$GITHUB_USERNAME" ] || {
+[ "$3" ] || {
   echo "ERROR: Environment variable GITHUB_USERNAME is required"
   exit 1
 }
 
-[ "$GITHUB_ACTIONS_REPO" ] || {
+[ "$4" ] || {
   echo "ERROR: Environment variable GITHUB_ACTIONS_REPO is required"
   exit 1
 }
 
-[ "$GITHUB_ACTIONS_RUN_ID" ] || {
+[ "$5" ] || {
   echo "ERROR: Environment variable GITHUB_ACTIONS_RUN_ID is required"
   exit 1
 }
