@@ -66,7 +66,8 @@ sleep 2
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
-cd helm-charts/
+cd test/
+#cd helm-charts/
 
 echo '>> Building charts...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
