@@ -12,6 +12,31 @@ GITHUB_ACTIONS_RUN_ID=$5
   exit 1
 }
 
+# if [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_USERNAME" ]; then
+#   echo "ERROR: Environment variable GITHUB_USERNAME is required"
+#   exit 1
+# fi
+
+[ "$GITHUB_BRANCH" ] || {
+  echo "ERROR: Environment variable GITHUB_BRANCH is required"
+  exit 1
+}
+
+[ "$GITHUB_USERNAME" ] || {
+  echo "ERROR: Environment variable GITHUB_USERNAME is required"
+  exit 1
+}
+
+[ "$GITHUB_ACTIONS_REPO" ] || {
+  echo "ERROR: Environment variable GITHUB_ACTIONS_REPO is required"
+  exit 1
+}
+
+[ "$GITHUB_ACTIONS_REPO" ] || {
+  echo "ERROR: Environment variable GITHUB_ACTIONS_REPO is required"
+  exit 1
+}
+
 [ -z "$GITHUB_PAGES_BRANCH" ] && GITHUB_PAGES_BRANCH=gh-pages
 [ -z "$HELM_CHARTS_SOURCE" ] && HELM_CHARTS_SOURCE="$WORKING_DIRECTORY/charts"
 [ -d "$HELM_CHARTS_SOURCE" ] || {
@@ -35,6 +60,7 @@ echo "GITHUB_ACTIONS_RUN_ID=$GITHUB_ACTIONS_RUN_ID"
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
+ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git" #GITHUB_PAGES_REPO
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
