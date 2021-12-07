@@ -91,4 +91,4 @@ git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
 git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
 git status
-# git push origin "$GITHUB_PAGES_BRANCH"
+git push origin "$GITHUB_PAGES_BRANCH"
