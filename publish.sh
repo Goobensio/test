@@ -62,7 +62,7 @@ sleep 5
 ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
-git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
+git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
 git clone -b "GITHUB_PAGES_BRANCH" "git@github.com:${GITHUB_PAGES_REPO}.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
