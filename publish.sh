@@ -4,6 +4,8 @@ WORKING_DIRECTORY="$PWD"
 GITHUB_PAGES_REPO=$1
 GITHUB_BRANCH=$2
 GITHUB_USERNAME=$3
+GITHUB_ACTIONS_REPO=$4
+GITHUB_ACTIONS_RUN_ID=$5
 
 [ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -60,7 +62,7 @@ git add .
 git status
 echo $github.repository
 echo $github.run_id
-git commit -m "Published by github actions https://github.com/${github.repository}/actions/runs/${github.run_id}" #$CIRCLE_BUILD_URL"
+git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
 git status # 
 ls
 # git push origin "$GITHUB_PAGES_BRANCH"
