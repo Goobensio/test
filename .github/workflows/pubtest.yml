@@ -23,6 +23,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.GH_TOKEN }}
+          name: id_rsa
           run: |
             sudo apt install jq curl -y
             echo $GITHUB_PAGES_REPO
