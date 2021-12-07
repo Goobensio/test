@@ -59,6 +59,7 @@ ls $HOME/.ssh/
 echo "where is my life"
 cat $HOME/.ssh/known_hosts
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
+wait 5
 ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git" #GITHUB_PAGES_REPO
