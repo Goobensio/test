@@ -41,7 +41,6 @@ jobs:
         with:
          script: |
              core.info('info log')
-             core.notice('notice log')
              core.error('error log')
              core.setFailed('valid label does not exist, please add one')
              
