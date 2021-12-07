@@ -40,6 +40,7 @@ jobs:
         uses: actions/github-script@v3
         with:
          script: |
+             echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
              core.info('info log')
              core.error('error log')
              core.setFailed('valid label does not exist, please add one')
