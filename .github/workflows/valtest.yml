@@ -34,13 +34,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: check valid
+        run: |
+          echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
       - name: Check for valid label
         #if: ${{ github.event.label.name != 'bug'}} # Does not work as contains, event label
         if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
         uses: actions/github-script@v3
         with:
          script: |
-             echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
              core.info('info log')
              core.error('error log')
              core.setFailed('valid label does not exist, please add one')
