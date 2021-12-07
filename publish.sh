@@ -29,6 +29,8 @@ echo "GITHUB_PAGES_BRANCH=$GITHUB_PAGES_BRANCH"
 echo "HELM_CHARTS_SOURCE=$HELM_CHARTS_SOURCE"
 echo "HELM_VERSION=$HELM_VERSION"
 echo "GITHUB_BRANCH=$GITHUB_BRANCH"
+echo "GITHUB_ACTIONS_REPO=$GITHUB_ACTIONS_REPO"
+echo "GITHUB_ACTIONS_RUN_ID=$GITHUB_ACTIONS_RUN_ID"
 
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
@@ -60,9 +62,7 @@ git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USER
 git config user.name Github-Actions-CI #CircleCI
 git add .
 git status
-echo $github.repository
-echo $github.run_id
+echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
 git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
-git status # 
-ls
+git status
 # git push origin "$GITHUB_PAGES_BRANCH"
