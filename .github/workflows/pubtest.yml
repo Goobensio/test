@@ -10,6 +10,7 @@ on:
       - '!master'
 jobs:
   build-job:
+    environment: CI. # Configure here from what the secret was set on
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
