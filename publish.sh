@@ -58,7 +58,7 @@ git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USER
 git config user.name Github-Actions-CI #CircleCI
 git add .
 git status
-git commit -m "Published by github actions https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}" #$CIRCLE_BUILD_URL"
+git commit -m "Published by github actions https://github.com/${github.repository}/actions/runs/${github.run_id}" #$CIRCLE_BUILD_URL"
 git status # 
 ls
 # git push origin "$GITHUB_PAGES_BRANCH"
