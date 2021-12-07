@@ -32,8 +32,8 @@ GITHUB_ACTIONS_RUN_ID=$5
   exit 1
 }
 
-[ "$GITHUB_ACTIONS_REPO" ] || {
-  echo "ERROR: Environment variable GITHUB_ACTIONS_REPO is required"
+[ "$GITHUB_ACTIONS_RUN_ID" ] || {
+  echo "ERROR: Environment variable GITHUB_ACTIONS_RUN_ID is required"
   exit 1
 }
 
