@@ -56,6 +56,7 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 ls $HOME/.ssh/
+echo "where is my life"
 cat $HOME/.ssh/known_hosts
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 ls $HOME/.ssh/
