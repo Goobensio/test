@@ -86,9 +86,6 @@ fi
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
 git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
 git config user.name Github-Actions-CI
-git config --list
-git config user.name
-git config user.email
 git add .
 git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
