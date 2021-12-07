@@ -56,13 +56,12 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 ls $HOME/.ssh/
-echo "where is my life"
 cat $HOME/.ssh/known_hosts
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 sleep 5
 ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
-git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git" #GITHUB_PAGES_REPO
+git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
 
@@ -85,10 +84,8 @@ if [ "$GITHUB_BRANCH" != "refs/heads/master" ]; then
   exit 0
 fi
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-git config user.email "$GITHUB_USERNAME@users.noreply.github.com" #"$CIRCLE_USERNAME@users.noreply.github.com"
-git config user.name Github-Actions-CI #CircleCI
-git config --global user.email
-git config --global user.name
+git config user.email "$GITHUB_USERNAME@users.noreply.github.com"
+git config user.name Github-Actions-CI
 git add .
 git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
