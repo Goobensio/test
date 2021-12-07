@@ -22,7 +22,7 @@ jobs:
       - name: Publish Charts
         run: |
           eval "$(ssh-agent -s)"
-          ssh-add - <<< "${DEPLOY_KEY}"
+          ssh-add - <<< "${GH_KEY}"
           sudo apt install jq curl -y
           echo $GITHUB_PAGES_REPO
           echo $GITHUB_BRANCH
