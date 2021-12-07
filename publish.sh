@@ -12,7 +12,7 @@ GITHUB_ACTIONS_RUN_ID=$5
   exit 1
 }
 
-[ "$$2" ] || {
+[ "$2" ] || {
   echo "ERROR: Environment variable GITHUB_BRANCH is required"
   exit 1
 }
@@ -55,9 +55,9 @@ echo "GITHUB_ACTIONS_RUN_ID=$GITHUB_ACTIONS_RUN_ID"
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
-ls $HOME/.ssh/known_hosts
+ls $HOME/.ssh/
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
-ls $HOME/.ssh/known_hosts
+ls $HOME/.ssh/
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git" #GITHUB_PAGES_REPO
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd helm-charts/
