@@ -4,7 +4,6 @@ on:
     types: [labeled, unlabeled, opened, reopened, edited, ready_for_review, synchronize]
     branches-ignore:
       - '*'
-      #- '!master'
   push:
     branches-ignore:
       - '*'
@@ -14,29 +13,20 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-#       - name: label check
-#         if: ${{ !contains( github.event.pull_request.labels.*.name, 'controller') && !contains( github.event.pull_request.labels.*.name, 'datastore') && !contains( github.event.pull_request.labels.*.name, 'operator') && !contains( github.event.pull_request.labels.*.name, 'global_change') }}
-#         uses: actions/github-script@v3
-#         with:
-#           message: "valid label does not exist, please add one"
-#           script: |
-#               core.error
-#               core.setFailed('valid label does not exist, please add one')
       - name: Validate Charts
         run: |
           sudo sh install-helm.sh
           alias helm="/tmp/helm/bin/linux-amd64/helm"
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
-      - name: Publish Charts # Change to publish.sh and inside to master
+      - name: Publish Charts
         run: |
           sudo apt install jq curl -y
           echo $GITHUB_PAGES_REPO
           echo $GITHUB_BRANCH
-          echo $GITHUB_USERNAME
           sudo sh publish.sh $GITHUB_PAGES_REPO $GITHUB_BRANCH $GITHUB_USERNAME
         env:
-          GITHUB_PAGES_REPO: rookout/helm-charts #Goobensio/test #rookout/helm-charts
+          GITHUB_PAGES_REPO: rookout/helm-charts
           GITHUB_BRANCH: ${{ github.ref }}
           GITHUB_USERNAME: sonariorobot
           GITHUB_PAGES_TEST: Goobensio/test
