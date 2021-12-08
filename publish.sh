@@ -65,7 +65,8 @@ git config user.email
 ssh -T git@github.com
 sleep 2
 echo "@@@@@@@@"
-ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
+#ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
+ls -al ~/.ssh
 echo "@@@@@@@@"
 sleep 2
 ssh -T git@github.com
