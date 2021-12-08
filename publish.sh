@@ -57,7 +57,7 @@ cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
 #ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
-sleep 3
+sleep 2
 ls $HOME/.ssh/
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
