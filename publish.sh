@@ -70,10 +70,10 @@ ls -al ~/.ssh
 echo "@@@@@@@@"
 sleep 2
 ssh -T git@github.com
-sleep 2
-ls $HOME/.ssh/
-cat $HOME/.ssh/known_hosts
-sleep 3
+# sleep 2
+# ls $HOME/.ssh/
+# cat $HOME/.ssh/known_hosts
+# sleep 3
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
