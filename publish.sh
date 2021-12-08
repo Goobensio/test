@@ -58,8 +58,8 @@ mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 sleep 2
-git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
-git config user.name Github-Actions-CI
+#git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
+#git config user.name Github-Actions-CI
 git config user.name
 git config user.email
 ssh -T git@github.com
@@ -76,7 +76,7 @@ sleep 2
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
-git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
+sudo git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/
