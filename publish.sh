@@ -58,6 +58,8 @@ mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 sleep 2
+git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
+git config user.name Github-Actions-CI
 git config user.name
 git config user.email
 ssh -T git@github.com
