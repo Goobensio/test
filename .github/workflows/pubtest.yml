@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: add ssh key
-        uses: webfactory/ssh-agent@v0.5.4
+#       - name: add ssh key
+#         uses: webfactory/ssh-agent@v0.5.4
+#         with:
+#           ssh-private-key: ${{ secrets.SONARIO_GH_TOKEN }}
+      - name: add ssh key 2
+        uses: actions/checkout@v2
         with:
           ssh-private-key: ${{ secrets.SONARIO_GH_TOKEN }}
       - name: Validate Charts
