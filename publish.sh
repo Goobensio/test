@@ -62,8 +62,8 @@ ls $HOME/.ssh/
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
-#git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
-git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
+git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
+#git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/
 #cd helm-charts/
