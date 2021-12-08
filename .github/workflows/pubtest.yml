@@ -20,7 +20,7 @@ jobs:
       - name: add ssh key 2
         uses: actions/checkout@v2
         with:
-          ssh-private-key: ${{ secrets.SONARIO_GH_TOKEN }}
+          ssh-key: ${{ secrets.SONARIO_GH_TOKEN }}
       - name: Validate Charts
         run: |
           sudo sh install-helm.sh
