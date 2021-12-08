@@ -76,11 +76,19 @@ sleep 3
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
-sudo git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
-#git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
+#sudo git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
+git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/
 #cd helm-charts/
+git config user.name
+git config user.email
+echo "@@@@@@@@"
+git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
+git config user.name Github-Actions-CI
+echo "@@@@@@@@"
+git config user.name
+git config user.email
 
 echo '>> Building charts...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
