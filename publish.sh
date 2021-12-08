@@ -89,6 +89,8 @@ git config user.name Github-Actions-CI
 echo "@@@@@@@@"
 git config user.name
 git config user.email
+sleep 2
+ssh -T git@github.com
 
 echo '>> Building charts...'
 sudo find "$HELM_CHARTS_SOURCE" -mindepth 1 -maxdepth 1 -type d | while read chart; do
@@ -116,5 +118,6 @@ git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
 git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
 git status
-git push "https://github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
+git push "git@github.com:Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
+#git push "https://github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push origin "$GITHUB_PAGES_BRANCH"
