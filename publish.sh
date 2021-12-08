@@ -128,6 +128,7 @@ echo "Message to commit: Published by github actions https://github.com/${GITHUB
 git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
 git status
 git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
+#git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push "git@github.com:Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push "https://github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push origin "$GITHUB_PAGES_BRANCH"
