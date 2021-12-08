@@ -68,6 +68,7 @@ sleep 2
 echo "$GH_TOKEN"
 touch ~/.ssh/id_rsa
 echo "$GH_TOKEN" > ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa
 echo "@@@@@@@@"
 #ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 ls -al ~/.ssh
@@ -82,8 +83,8 @@ ssh -T git@github.com
 echo "@@@@@@@@!"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
-#sudo git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
-git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
+git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
+#git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
 echo "@@@@@@@@!"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/
