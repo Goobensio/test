@@ -61,7 +61,6 @@ echo "GITHUB_ACTIONS_RUN_ID=$GITHUB_ACTIONS_RUN_ID"
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
-echo "$GITHUB_USERNAME_TOKEN"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com:/${GITHUB_ACTIONS_REPO}.git"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/  # to change
@@ -91,6 +90,6 @@ git config user.name Github-Actions-CI
 git add .
 git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
-git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
+git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
 git status
 git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/${GITHUB_ACTIONS_REPO}.git" "${GITHUB_PAGES_BRANCH}"
