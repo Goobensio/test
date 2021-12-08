@@ -61,11 +61,13 @@ cat $HOME/.ssh/known_hosts
 sleep 2
 #git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
 #git config user.name Github-Actions-CI
-git config user.name
-git config user.email
+# git config user.name
+# git config user.email
 ssh -T git@github.com
 sleep 2
 echo "$GH_TOKEN"
+touch ~/.ssh/id_rsa
+echo "$GH_TOKEN" > ~/.ssh/id_rsa
 echo "@@@@@@@@"
 #ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 ls -al ~/.ssh
