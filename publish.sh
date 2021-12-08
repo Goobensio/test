@@ -58,7 +58,13 @@ mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 sleep 2
+ssh -T git@github.com
+sleep 2
+echo "@@@@@@@@"
 ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
+echo "@@@@@@@@"
+sleep 2
+ssh -T git@github.com
 sleep 2
 ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
