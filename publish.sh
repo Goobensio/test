@@ -56,9 +56,13 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
-#ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
+cat $HOME/.ssh/known_hosts
+sleep 2
+ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 sleep 2
 ls $HOME/.ssh/
+cat $HOME/.ssh/known_hosts
+sleep 2
 #cat $HOME/.ssh/known_hosts
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
