@@ -58,6 +58,8 @@ mkdir -p "$HOME/.ssh"
 #ls $HOME/.ssh/
 cat $HOME/.ssh/known_hosts
 sleep 2
+git config user.name
+git config user.email
 ssh -T git@github.com
 sleep 2
 echo "@@@@@@@@"
