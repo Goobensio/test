@@ -6,7 +6,7 @@ GITHUB_BRANCH=$2
 GITHUB_USERNAME=$3
 GITHUB_ACTIONS_REPO=$4
 GITHUB_ACTIONS_RUN_ID=$5
-GH_TOKEN=$6
+GITHUB_USERNAME_TOKEN=$6
 
 [ "$1" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
@@ -65,10 +65,10 @@ sleep 2
 # git config user.email
 ssh -T git@github.com
 sleep 2
-echo "$GH_TOKEN"
-touch ~/.ssh/id_rsa
-echo "$GH_TOKEN" > ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa
+echo "$GITHUB_USERNAME_TOKEN"
+#touch ~/.ssh/id_rsa
+#echo "$GH_TOKEN" > ~/.ssh/id_rsa
+#cat ~/.ssh/id_rsa
 echo "@@@@@@@@"
 #ssh-keyscan -H github.com >> "$HOME/.ssh/known_hosts"
 ls -al ~/.ssh
@@ -83,8 +83,10 @@ ssh -T git@github.com
 echo "@@@@@@@@!"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_REPO}.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:${GITHUB_PAGES_REPO}.git"
-git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
+#git clone -b "${GITHUB_PAGES_BRANCH}" "git@github.com:Goobensio/test.git"
 #git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/Goobensio/test.git"
+
+git clone -b "${GITHUB_PAGES_BRANCH}" "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com:/${GITHUB_USERNAME}Goobensio/test.git"
 echo "@@@@@@@@!"
 alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/
@@ -125,6 +127,7 @@ git status
 echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
 git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}" #$CIRCLE_BUILD_URL"
 git status
-git push "git@github.com:Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
+git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/${GITHUB_USERNAME}/project.git" "${GITHUB_PAGES_BRANCH}"
+#git push "git@github.com:Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push "https://github.com/Goobensio/test.git" "${GITHUB_PAGES_BRANCH}"
 #git push origin "$GITHUB_PAGES_BRANCH"
