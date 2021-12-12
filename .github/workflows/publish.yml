@@ -60,8 +60,8 @@ jobs:
           enable_jekyll: false
           keep_files: true
           user_name: "Github-Actions-CI"
-          user_email: '${GITHUB_USERNAME}@users.noreply.github.com'
-          commit_message: 'Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}'
+          user_email: ${GITHUB_USERNAME}@users.noreply.github.com
+          commit_message: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}
           
       - name: Verify - Published Charts ✅️	
         run: |
