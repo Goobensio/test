@@ -36,10 +36,10 @@ jobs:
           version: '2.8.1'
       - name: Validate Charts
         run: |
-          helm version
           cd /tmp/helm/bin
           pwd
-          ls
+          ls .
+          ls ~/
           #sudo chmod +x linux-amd64/helm
           #alias helm=/tmp/helm/bin/linux-amd64/helm
           helm version -c
