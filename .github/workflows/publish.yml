@@ -23,11 +23,11 @@ jobs:
           sudo apt install ca-certificates git openssh-server -y
           cd /tmp/helm/bin
 
-      - name: Install helm
+      - name: Install helm 🚀
         uses: azure/setup-helm@v1
         with:
           version: '2.8.1'
-      - name: Validate Charts
+      - name: Validate Charts ✅️	
         run: |
           pwd
           ls .
@@ -37,7 +37,7 @@ jobs:
           helm init -c --stable-repo-url https://charts.helm.sh/stable
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
-      - name: Publish Charts
+      - name: Pre Publish Charts ✅️	
         run: |
          sudo apt install jq curl -y
          echo $GITHUB_PAGES_REPO
@@ -59,11 +59,11 @@ jobs:
           publish_dir: ./test
           enable_jekyll: false
           keep_files: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Published by CircleCI $CIRCLE_BUILD_URL'
+          user_name: "Github-Actions-CI"
+          user_email: "${GITHUB_USERNAME}@users.noreply.github.com"
+          commit_message: "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
           
-      - name: Verify - Published Charts
+      - name: Verify - Published Charts ✅️	
         run: |
           echo $GITHUB_BRANCH
           #alias helm="/tmp/helm/bin/linux-amd64/helm"
