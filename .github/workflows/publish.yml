@@ -52,6 +52,11 @@ jobs:
           GITHUB_ACTIONS_REPO: ${{ github.repository }}
           GITHUB_ACTIONS_RUN_ID: ${{ github.run_id }}
           GITHUB_USERNAME_TOKEN: ${{ secrets.SONARIO_GH_TOKEN }}
+      - name: Publish & Deploy Charts 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_USERNAME_TOKEN }}
+          publish_dir: controller, datastore, operator
       - name: Verify - Published Charts
         run: |
           echo $GITHUB_BRANCH
