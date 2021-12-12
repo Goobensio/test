@@ -36,11 +36,12 @@ jobs:
           version: '2.8.1'
       - name: Validate Charts
         run: |
+          helm version
           cd /tmp/helm/bin
           pwd
           ls
-          sudo chmod +x linux-amd64/helm
-          alias helm=/tmp/helm/bin/linux-amd64/helm
+          #sudo chmod +x linux-amd64/helm
+          #alias helm=/tmp/helm/bin/linux-amd64/helm
           helm version -c
           helm init -c --stable-repo-url https://charts.helm.sh/stable
           sudo helm template charts/controller -f charts/controller/values.yaml
