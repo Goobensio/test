@@ -85,7 +85,6 @@ if [ "$GITHUB_BRANCH" != "refs/heads/master" ]; then
 fi
 
 cd ..
-#
 # echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
 # git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
 # git config user.name Github-Actions-CI
