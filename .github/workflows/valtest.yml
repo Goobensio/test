@@ -46,6 +46,8 @@ jobs:
           echo "---"
           ls ~/.helm/
           echo "---"
+          ls ~/.helm/repository/
+          echo "---"
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
       - name: Validate Helm charts and compare with labels
