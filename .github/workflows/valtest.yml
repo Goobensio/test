@@ -24,7 +24,7 @@ jobs:
       - name: Helm preinstalls
         run: |
           echo '>> Prepare...'
-          sudomkdir -p /tmp/helm/bin
+          sudo mkdir -p /tmp/helm/bin
           sudo mkdir -p /tmp/helm/publish
           sudo apt update -y
           sudo apt install ca-certificates git openssh-server -y
