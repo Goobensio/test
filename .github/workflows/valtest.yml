@@ -36,6 +36,7 @@ jobs:
           version: '2.8.1'
       - name: Validate Charts
         run: |
+          cd /tmp/helm/bin
           echo $pwd
           echo $ls
           sudo chmod +x linux-amd64/helm
