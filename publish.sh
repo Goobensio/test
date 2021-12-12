@@ -84,12 +84,12 @@ if [ "$GITHUB_BRANCH" != "refs/heads/master" ]; then
   exit 0
 fi
 
-echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
-git config user.name Github-Actions-CI
-git add .
-git status
-echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
-git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
-git status
-git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/${GITHUB_ACTIONS_REPO}.git" "${GITHUB_PAGES_BRANCH}"
+#echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
+#git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
+#git config user.name Github-Actions-CI
+#git add .
+#git status
+#echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
+#git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
+#git status
+#git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/${GITHUB_ACTIONS_REPO}.git" "${GITHUB_PAGES_BRANCH}"
