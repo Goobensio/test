@@ -56,7 +56,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.SONARIO_GH_TOKEN }}
-          publish_dir: /tmp/helm/publish/test
+          publish_dir: /tmp/helm/publish/test # change to helm-charts
           enable_jekyll: false
           keep_files: true
           user_name: "Github-Actions-CI"
