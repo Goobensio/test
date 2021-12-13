@@ -62,7 +62,6 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com:/${GITHUB_ACTIONS_REPO}.git"
-#alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/  # to change
 #cd helm-charts/
 
@@ -83,14 +82,3 @@ if [ "$GITHUB_BRANCH" != "refs/heads/master" ]; then
   echo "Current branch is not master and do not publish"
   exit 0
 fi
-
-pwd
-# echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-# git config user.email "${GITHUB_USERNAME}@users.noreply.github.com"
-# git config user.name Github-Actions-CI
-# git add .
-# git status
-# echo "Message to commit: Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
-# git commit -m "Published by github actions https://github.com/${GITHUB_ACTIONS_REPO}/actions/runs/${GITHUB_ACTIONS_RUN_ID}"
-# git status
-# git push "https://${GITHUB_USERNAME}:${GITHUB_USERNAME_TOKEN}@github.com/${GITHUB_ACTIONS_REPO}.git" "${GITHUB_PAGES_BRANCH}"
