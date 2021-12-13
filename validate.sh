@@ -51,7 +51,6 @@ echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 cd /tmp/helm/publish
 mkdir -p "$HOME/.ssh"
 git clone -b "${GITHUB_PAGES_BRANCH}" "https://github.com/${GITHUB_PAGES_TEST}.git" # change back to GITHUB_PAGES_REPO
-#alias helm="/tmp/helm/bin/linux-amd64/helm"
 cd test/ # change back to helm-charts/
 echo "$LABELS"
 
