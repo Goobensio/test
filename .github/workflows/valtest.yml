@@ -21,7 +21,7 @@ jobs:
          script: |
              core.error
              core.setFailed('valid label does not exist, please add one')
-      - name: Helm preinstalls
+      - name: Helm preinstalls ℹ️
         run: |
           echo '>> Prepare...'
           sudo mkdir -p /tmp/helm/bin
@@ -30,11 +30,11 @@ jobs:
           sudo apt install ca-certificates git openssh-server -y
           cd /tmp/helm/bin
           
-      - name: Install helm
+      - name: Install helm 🚀
         uses: azure/setup-helm@v1
         with:
           version: '2.8.1'
-      - name: Validate Charts
+      - name: Validate Charts ✅️	
         run: |
           pwd
           ls .
@@ -50,7 +50,7 @@ jobs:
           echo "---"
           sudo helm template charts/controller -f charts/controller/values.yaml
           sudo helm template charts/datastore -f charts/datastore/values.yaml
-      - name: Validate Helm charts and compare with labels
+      - name: Validate Helm charts and compare with labels ✅️	
         run: |
           sudo apt install jq curl -y
           echo $PR_NUMBER
