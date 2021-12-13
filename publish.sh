@@ -8,32 +8,32 @@ GITHUB_ACTIONS_REPO=$4
 GITHUB_ACTIONS_RUN_ID=$5
 GITHUB_USERNAME_TOKEN=$6
 
-[ "$1" ] || {
+[ "$GITHUB_PAGES_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_PAGES_REPO is required"
   exit 1
 }
 
-[ "$2" ] || {
+[ "$GITHUB_BRANCH" ] || {
   echo "ERROR: Environment variable GITHUB_BRANCH is required"
   exit 1
 }
 
-[ "$3" ] || {
+[ "$GITHUB_USERNAME" ] || {
   echo "ERROR: Environment variable GITHUB_USERNAME is required"
   exit 1
 }
 
-[ "$4" ] || {
+[ "$GITHUB_ACTIONS_REPO" ] || {
   echo "ERROR: Environment variable GITHUB_ACTIONS_REPO is required"
   exit 1
 }
 
-[ "$5" ] || {
+[ "$GITHUB_ACTIONS_RUN_ID" ] || {
   echo "ERROR: Environment variable GITHUB_ACTIONS_RUN_ID is required"
   exit 1
 }
 
-[ "$6" ] || {
+[ "$GITHUB_USERNAME_TOKEN" ] || {
   echo "ERROR: Environment variable GITHUB_USERNAME_TOKEN is required"
   exit 1
 }
