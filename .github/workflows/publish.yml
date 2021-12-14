@@ -53,9 +53,10 @@ jobs:
           publish_dir: /tmp/helm/publish/test # change to helm-charts
           enable_jekyll: false
           keep_files: true
+          cname: helm-charts.rookout.com
           user_name: "Github-Actions-CI"
           user_email: ${{env.GITHUB_USERNAME}}@users.noreply.github.com
-          commit_message: Published by github actions https://github.com/${{env.GITHUB_ACTIONS_REPO}}/actions/runs/${{env.GITHUB_ACTIONS_RUN_ID}}
+          commit_message: Published by GitHub-Actions https://github.com/${{env.GITHUB_ACTIONS_REPO}}/actions/runs/${{env.GITHUB_ACTIONS_RUN_ID}}
         env:
           GITHUB_USERNAME: ${{ secrets.SONARIO_GH_USER }}
           GITHUB_ACTIONS_REPO: ${{ github.repository }}
