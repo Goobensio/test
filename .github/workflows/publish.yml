@@ -51,7 +51,7 @@ jobs:
         with:
           github_token: ${{ secrets.SONARIO_GH_TOKEN }}
           publish_dir: /tmp/helm/publish/test # change to helm-charts
-          enable_jekyll: false
+          #enable_jekyll: false
           keep_files: true
           cname: helm-charts.rookout.com
           user_name: "Github-Actions-CI"
